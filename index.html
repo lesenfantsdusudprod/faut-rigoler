@@ -199,7 +199,7 @@ section[id] { scroll-margin-top: 20px; }
 
 /* ---------- 04 Être alerté ---------- */
 .alerte { background: var(--ivoire); color: var(--encre); position: relative; overflow: hidden; isolation: isolate; }
-.alerte__in { position: relative; z-index: 1; min-height: clamp(460px, 42vw, 600px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .9fr); gap: clamp(24px, 4vw, 56px); align-items: center; padding-block: clamp(56px, 8vw, 110px); }
+.alerte__in { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .9fr); gap: clamp(24px, 4vw, 56px); align-items: center; padding-block: clamp(56px, 8vw, 110px); }
 .alerte__texte { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
 .alerte__texte > p { margin: 0; max-width: 36ch; color: var(--encre-doux); font-size: 1.04rem; }
 .formulaire { margin-top: 12px; display: flex; flex-direction: column; gap: 14px; max-width: 480px; }
@@ -224,21 +224,11 @@ section[id] { scroll-margin-top: 20px; }
 .etat { font-size: .92rem; margin: 0; min-height: 1.4em; }
 .etat--ok { color: #1f6b4a; font-weight: 500; }
 .etat--erreur { color: var(--rose-fonce); font-weight: 500; }
-/* Photo en fond : occupe la droite de la section et se fond dans l'ivoire vers la gauche */
-.alerte__photo { position: absolute; z-index: 0; top: 0; right: 0; bottom: 0; width: 70%; margin: 0; }
-.alerte__photo img { width: 100%; height: 100%; object-fit: cover; object-position: 60% 25%;
-  -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.35) 22%, #000 55%);
-          mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.35) 22%, #000 55%); }
-.alerte__photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, var(--ivoire) 0%, rgba(246,239,227,0) 40%); pointer-events: none; }
+.alerte__photo { margin: 0; justify-self: end; width: 100%; max-width: 470px; }
+.alerte__photo img { width: 100%; height: auto; aspect-ratio: 451 / 246; object-fit: cover; object-position: 50% 20%; border-radius: 4px; box-shadow: 0 30px 60px -30px rgba(27,34,50,.45); transform: rotate(1.5deg); }
 @media (max-width: 760px) {
   .alerte__in { grid-template-columns: 1fr; }
-  .alerte { padding-bottom: 0; }
-  .alerte__in { min-height: 0; padding-bottom: 0; }
-  .alerte__photo { position: relative; width: auto; height: 300px; margin-top: -40px; }
-  .alerte__photo img { object-position: 60% 20%;
-    -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,.4) 25%, #000 55%);
-            mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,.4) 25%, #000 55%); }
-  .alerte__photo::after { display: none; }
+  .alerte__photo { justify-self: center; max-width: 420px; }
 }
 @media (max-width: 420px) {
   .champ { flex-direction: column; border-radius: 18px; }
@@ -399,12 +389,11 @@ section[id] { scroll-margin-top: 20px; }
           <p class="etat" id="etat" role="status" aria-live="polite"></p>
         </form>
       </div>
-
+      <figure class="alerte__photo">
+        <img src="images/05_alerte_bonne_mere_vue.webp" width="1448" height="790" loading="lazy"
+             alt="La Vierge dorée de Notre-Dame-de-la-Garde au-dessus des toits de Marseille">
+      </figure>
     </div>
-    <figure class="alerte__photo">
-      <img src="images/05_alerte_bonne_mere_vue.webp" width="1448" height="790" loading="lazy"
-           alt="La Vierge dorée de Notre-Dame-de-la-Garde au-dessus des toits de Marseille">
-    </figure>
   </section>
 </main>
 
