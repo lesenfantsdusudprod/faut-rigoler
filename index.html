@@ -208,6 +208,17 @@ section[id] { scroll-margin-top: 20px; }
 .champ:focus-within { border-color: var(--rose); box-shadow: 0 0 0 3px rgba(242,86,108,.18); }
 .champ input { flex: 1; min-width: 0; border: 0; background: transparent; font: inherit; color: var(--encre); padding: 10px 16px; outline: none; }
 .champ input::placeholder { color: #8a8f9c; }
+/* Remplissage automatique du navigateur : garder le champ blanc au lieu du fond gris/bleu */
+.champ input:-webkit-autofill,
+.champ input:-webkit-autofill:hover,
+.champ input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--encre);
+  -webkit-box-shadow: 0 0 0 1000px #fff inset;
+  box-shadow: 0 0 0 1000px #fff inset;
+  caret-color: var(--encre);
+  transition: background-color 9999s ease-out 0s;
+}
+.champ input:autofill { background: #fff; }
 .champ .btn { padding: 12px 22px; box-shadow: none; flex-shrink: 0; }
 .consentement { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: start; font-size: .84rem; color: var(--encre-doux); line-height: 1.45; }
 .consentement input { width: 18px; height: 18px; margin: 1px 0 0; accent-color: var(--rose); }
@@ -461,6 +472,10 @@ section[id] { scroll-margin-top: 20px; }
   var form = document.getElementById('form-alerte');
   var etat = document.getElementById('etat');
   function message(txt, type) { etat.textContent = txt; etat.className = 'etat' + (type ? ' etat--' + type : ''); }
+
+  // Effacer un message d'erreur dès que la personne corrige le champ ou coche la case
+  form.addEventListener('input', function () { if (etat.classList.contains('etat--erreur')) message(''); });
+  form.addEventListener('change', function () { if (etat.classList.contains('etat--erreur')) message(''); });
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
