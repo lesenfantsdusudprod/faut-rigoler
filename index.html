@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Faut Rigoler</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Faut Rigoler, une série originale marseillaise. Un producteur fauché. Une troupe ingérable. Un rêve démesuré.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Oswald:wght@500;600&family=Permanent+Marker&family=Work+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout : une couverture plein cadre, puis une alternance ivoire / bleu nuit,
+   chaque section ouverte par son numéro en rose. Direction unique et assumée (pas de thème clair/sombre). */
+:root {
+  color-scheme: dark;
+  --nuit: #0e1828;        /* bleu nuit : fonds sombres */
+  --nuit-2: #15233a;      /* bleu nuit relevé : pied de page, champs */
+  --ivoire: #f6efe3;      /* ivoire : sections claires */
+  --encre: #1b2232;       /* texte sur ivoire */
+  --encre-doux: #4a5163;  /* texte secondaire sur ivoire */
+  --craie: #f7f2ea;       /* texte sur nuit */
+  --craie-doux: #b8bccb;  /* texte secondaire sur nuit */
+  --rose: #f2566c;        /* accent : boutons, numéros, trait du logo */
+  --rose-fonce: #d83f56;
+
+  --f-logo: "Permanent Marker", "Marker Felt", "Comic Sans MS", cursive;
+  --f-titre: "Oswald", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --f-texte: "Work Sans", "Helvetica Neue", Arial, sans-serif;
+  --f-main: "Caveat", "Segoe Print", "Bradley Hand", cursive;
+
+  --gouttiere-g: max(20px, env(safe-area-inset-left, 0px));
+  --gouttiere-d: max(20px, env(safe-area-inset-right, 0px));
+  --largeur: 1180px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  background: var(--nuit);
+  color: var(--craie);
+  font-family: var(--f-texte);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--rose); outline-offset: 3px; border-radius: 4px; }
+.visually-hidden { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.skip { position: absolute; left: 12px; top: -60px; z-index: 50; background: var(--rose); color: #fff; padding: 10px 16px; border-radius: 999px; text-decoration: none; font-weight: 600; }
+.skip:focus { top: calc(12px + env(safe-area-inset-top, 0px)); }
+
+.wrap {
+  width: 100%;
+  max-width: calc(var(--largeur) + 40px);
+  margin-inline: auto;
+  padding-left: var(--gouttiere-g);
+  padding-right: var(--gouttiere-d);
+}
+
+/* ---------- Logo typographique (à remplacer par le fichier officiel de la marque) ---------- */
+.logo { display: inline-flex; flex-direction: column; align-items: center; text-decoration: none; color: var(--craie); line-height: .82; }
+.logo__mot { font-family: var(--f-logo); font-size: 1.55rem; transform: rotate(-4deg); display: block; text-align: center; }
+.logo__serie { font-family: var(--f-titre); font-weight: 500; font-size: .58rem; letter-spacing: .42em; margin-top: .55em; padding-left: .42em; color: var(--craie); }
+
+/* ---------- En-tête ---------- */
+.entete {
+  position: absolute; inset: 0 0 auto; z-index: 20;
+  padding-top: calc(18px + env(safe-area-inset-top, 0px));
+}
+.entete__in { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.nav { display: flex; gap: clamp(18px, 3vw, 44px); }
+.nav a, .reseaux a {
+  font-family: var(--f-titre); font-weight: 500; font-size: .78rem; letter-spacing: .14em; text-transform: uppercase;
+  text-decoration: none; color: var(--craie); opacity: .86; padding-block: 8px; position: relative;
+}
+.nav a:hover, .reseaux a:hover { opacity: 1; }
+.nav a[aria-current="true"]::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--rose); border-radius: 2px; }
+.reseaux { display: flex; gap: 18px; }
+.reseaux a { font-size: .7rem; }
+.burger { display: none; }
+
+@media (max-width: 860px) {
+  .entete .nav, .entete .reseaux { display: none; }
+  .burger {
+    display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 50%;
+    background: rgba(14, 24, 40, .45); border: 1px solid rgba(247, 242, 234, .25); color: var(--craie); cursor: pointer;
+  }
+  .burger span, .burger span::before, .burger span::after { display: block; width: 18px; height: 2px; background: currentColor; border-radius: 2px; position: relative; content: ""; }
+  .burger span::before { position: absolute; top: -6px; }
+  .burger span::after { position: absolute; top: 6px; }
+}
+.menu-mobile {
+  position: fixed; inset: 0; z-index: 40; background: var(--nuit);
+  padding: calc(24px + env(safe-area-inset-top, 0px)) var(--gouttiere-d) calc(32px + env(safe-area-inset-bottom, 0px)) var(--gouttiere-g);
+  display: flex; flex-direction: column; gap: 40px;
+}
+.menu-mobile__haut { display: flex; justify-content: space-between; align-items: center; }
+.menu-mobile .fermer { width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(247,242,234,.3); background: none; color: var(--craie); font-size: 1.5rem; line-height: 1; cursor: pointer; }
+.menu-mobile nav { display: flex; flex-direction: column; gap: 6px; }
+.menu-mobile nav a { font-family: var(--f-titre); font-weight: 600; font-size: 2rem; text-transform: uppercase; text-decoration: none; color: var(--craie); padding-block: 6px; }
+.menu-mobile nav a:hover { color: var(--rose); }
+.menu-mobile .reseaux { margin-top: auto; }
+
+/* ---------- Accueil ---------- */
+.accueil {
+  position: relative; isolation: isolate;
+  min-height: clamp(600px, 92vh, 900px);
+  display: flex; align-items: flex-end;
+  padding-bottom: 36px;
+  overflow: hidden;
+}
+.accueil__photo { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: 58% 40%; }
+@media (max-width: 760px) { .accueil__photo { object-position: 45% 15%; } }
+.accueil::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background:
+    linear-gradient(180deg, rgba(14,24,40,.55) 0%, rgba(14,24,40,0) 22%),
+    linear-gradient(0deg, var(--nuit) 0%, rgba(14,24,40,.86) 26%, rgba(14,24,40,.35) 55%, rgba(14,24,40,0) 72%);
+}
+.accueil__in { text-align: center; display: flex; flex-direction: column; align-items: center; }
+.surtitre { font-family: var(--f-titre); font-weight: 500; font-size: .82rem; letter-spacing: .32em; text-transform: uppercase; margin: 0 0 6px; padding-left: .32em; }
+.titre-serie { margin: 0; font-weight: 400; line-height: .8; display: flex; flex-direction: column; align-items: center; }
+.titre-serie__mot { font-family: var(--f-logo); font-size: clamp(3.6rem, 12vw, 8.4rem); transform: rotate(-4deg); text-shadow: 0 6px 30px rgba(0,0,0,.35); }
+.titre-serie__mot:last-of-type { margin-top: -.06em; }
+.trait { width: clamp(180px, 34vw, 330px); height: auto; margin-top: -2px; color: var(--rose); }
+.titre-serie__la { font-family: var(--f-titre); font-weight: 500; font-size: clamp(.9rem, 1.6vw, 1.1rem); letter-spacing: .5em; padding-left: .5em; margin-top: 14px; }
+.accroche { font-size: clamp(1rem, 1.7vw, 1.18rem); margin: 18px 0 26px; max-width: 34ch; text-wrap: balance; }
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--rose); color: #fff; border: 0; cursor: pointer;
+  font-family: var(--f-titre); font-weight: 600; font-size: .9rem; letter-spacing: .12em; text-transform: uppercase;
+  padding: 15px 30px; border-radius: 999px; text-decoration: none;
+  box-shadow: 0 10px 30px -10px rgba(242, 86, 108, .7);
+  transition: background .2s, transform .2s;
+}
+.btn:hover { background: var(--rose-fonce); transform: translateY(-1px); }
+.defiler { margin-top: 30px; width: 26px; height: 40px; border: 1.5px solid rgba(247,242,234,.7); border-radius: 14px; display: grid; justify-items: center; padding-top: 8px; }
+.defiler::after { content: ""; width: 3px; height: 8px; border-radius: 2px; background: var(--craie); animation: molette 1.8s ease-in-out infinite; }
+@keyframes molette { 0%, 100% { transform: translateY(0); opacity: 1; } 60% { transform: translateY(10px); opacity: .2; } }
+
+.entree { animation: monte .9s cubic-bezier(.2,.7,.2,1) both; }
+.entree--2 { animation-delay: .12s; }
+.entree--3 { animation-delay: .28s; }
+.entree--4 { animation-delay: .42s; }
+@keyframes monte { from { transform: translateY(18px); opacity: .001; } to { transform: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .entree, .defiler::after { animation: none; } }
+
+/* ---------- Têtes de section ---------- */
+.numero { font-family: var(--f-titre); font-weight: 500; font-size: 1.15rem; color: var(--rose); letter-spacing: .04em; margin: 0 0 4px; display: flex; align-items: center; gap: 8px; }
+.numero::after { content: ""; width: 18px; height: 2px; background: currentColor; }
+.titre { font-family: var(--f-titre); font-weight: 600; text-transform: uppercase; font-size: clamp(2rem, 4.2vw, 3rem); line-height: 1.02; letter-spacing: .01em; margin: 0; text-wrap: balance; }
+section[id] { scroll-margin-top: 20px; }
+
+/* ---------- 01 L'histoire ---------- */
+.histoire { background: var(--ivoire); color: var(--encre); }
+.histoire__in { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); align-items: stretch; gap: 0; padding-block: clamp(56px, 8vw, 110px); }
+.histoire__photo { margin: 0; position: relative; }
+.histoire__photo img { width: 100%; height: 100%; min-height: 500px; object-fit: cover; object-position: 12% 50%; border-radius: 4px; }
+.histoire__photo figcaption { font-family: var(--f-main); font-size: 1.25rem; color: var(--encre-doux); margin-top: 10px; transform: rotate(-1.5deg); }
+.histoire__texte { padding: clamp(28px, 5vw, 72px); padding-right: 0; display: flex; flex-direction: column; justify-content: center; gap: 14px; min-width: 0; }
+.histoire__texte p { margin: 0; max-width: 40ch; color: var(--encre); font-size: 1.04rem; }
+.histoire__texte p + p { color: var(--encre-doux); }
+.histoire__texte .titre { margin-bottom: 10px; }
+.citation { font-family: var(--f-main); font-size: 1.6rem; line-height: 1.15; color: var(--rose-fonce); margin-top: 10px !important; max-width: 22ch !important; }
+@media (max-width: 760px) {
+  .histoire__in { grid-template-columns: 1fr; }
+  .histoire__texte { order: -1; padding: 0 0 28px; }
+  .histoire__photo img { min-height: 0; aspect-ratio: 4 / 3; height: auto; }
+}
+
+/* ---------- 02 La troupe ---------- */
+.troupe { background: var(--nuit); text-align: center; padding-top: clamp(56px, 7vw, 96px); position: relative; }
+.troupe .numero { justify-content: center; }
+.troupe .numero::after { display: none; }
+.troupe__devise { font-family: var(--f-main); font-weight: 500; font-size: clamp(1.7rem, 3.6vw, 2.6rem); line-height: 1.1; margin: 12px auto 0; max-width: 24ch; color: var(--craie); transform: rotate(-1.5deg); }
+.troupe__photo { position: relative; margin-top: 8px; }
+.troupe__photo img { width: 100%; height: clamp(240px, 32vw, 460px); object-fit: cover; object-position: 50% 62%; }
+.troupe__photo::before { content: ""; position: absolute; inset: 0 0 auto; height: 35%; background: linear-gradient(180deg, var(--nuit), rgba(14,24,40,0)); z-index: 1; }
+.troupe__note { position: absolute; z-index: 2; right: var(--gouttiere-d); bottom: 14px; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--craie-doux); }
+
+/* ---------- 03 Le teaser ---------- */
+.teaser { position: relative; isolation: isolate; overflow: hidden; padding-block: clamp(56px, 8vw, 110px); min-height: clamp(420px, 52vw, 620px); display: flex; }
+.teaser__photo { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%; filter: saturate(.85); }
+.teaser::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(14,24,40,.92) 0%, rgba(14,24,40,.6) 45%, rgba(14,24,40,.35) 100%), linear-gradient(0deg, rgba(14,24,40,.7), rgba(14,24,40,0) 50%); }
+.teaser__in { display: flex; flex-direction: column; justify-content: space-between; gap: 40px; }
+.bientot { align-self: center; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.bientot__pastille {
+  width: 88px; height: 88px; border-radius: 50%; border: 2px dashed rgba(247,242,234,.65);
+  display: grid; place-items: center; font-family: var(--f-titre); font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; padding-left: .2em;
+}
+.bientot p { margin: 0; font-size: 1.12rem; }
+.lien-souligne { font-family: var(--f-titre); font-weight: 500; font-size: .82rem; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; color: var(--craie); border-bottom: 2px solid var(--rose); padding-bottom: 3px; }
+.lien-souligne:hover { color: var(--rose); }
+
+/* ---------- 04 Être alerté ---------- */
+.alerte { background: var(--ivoire); color: var(--encre); position: relative; overflow: hidden; isolation: isolate; }
+.alerte__in { position: relative; z-index: 1; min-height: clamp(460px, 42vw, 600px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .9fr); gap: clamp(24px, 4vw, 56px); align-items: center; padding-block: clamp(56px, 8vw, 110px); }
+.alerte__texte { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.alerte__texte > p { margin: 0; max-width: 36ch; color: var(--encre-doux); font-size: 1.04rem; }
+.formulaire { margin-top: 12px; display: flex; flex-direction: column; gap: 14px; max-width: 480px; }
+.champ { display: flex; gap: 8px; background: #fff; border: 1px solid #ddd3c3; border-radius: 999px; padding: 6px; }
+.champ:focus-within { border-color: var(--rose); box-shadow: 0 0 0 3px rgba(242,86,108,.18); }
+.champ input { flex: 1; min-width: 0; border: 0; background: transparent; font: inherit; color: var(--encre); padding: 10px 16px; outline: none; }
+.champ input::placeholder { color: #8a8f9c; }
+.champ .btn { padding: 12px 22px; box-shadow: none; flex-shrink: 0; }
+.consentement { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: start; font-size: .84rem; color: var(--encre-doux); line-height: 1.45; }
+.consentement input { width: 18px; height: 18px; margin: 1px 0 0; accent-color: var(--rose); }
+.etat { font-size: .92rem; margin: 0; min-height: 1.4em; }
+.etat--ok { color: #1f6b4a; font-weight: 500; }
+.etat--erreur { color: var(--rose-fonce); font-weight: 500; }
+/* Photo en fond : occupe la droite de la section et se fond dans l'ivoire vers la gauche */
+.alerte__photo { position: absolute; z-index: 0; top: 0; right: 0; bottom: 0; width: 70%; margin: 0; }
+.alerte__photo img { width: 100%; height: 100%; object-fit: cover; object-position: 60% 25%;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.35) 22%, #000 55%);
+          mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.35) 22%, #000 55%); }
+.alerte__photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, var(--ivoire) 0%, rgba(246,239,227,0) 40%); pointer-events: none; }
+@media (max-width: 760px) {
+  .alerte__in { grid-template-columns: 1fr; }
+  .alerte { padding-bottom: 0; }
+  .alerte__in { min-height: 0; padding-bottom: 0; }
+  .alerte__photo { position: relative; width: auto; height: 300px; margin-top: -40px; }
+  .alerte__photo img { object-position: 60% 20%;
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,.4) 25%, #000 55%);
+            mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,.4) 25%, #000 55%); }
+  .alerte__photo::after { display: none; }
+}
+@media (max-width: 420px) {
+  .champ { flex-direction: column; border-radius: 18px; }
+  .champ .btn { justify-content: center; }
+}
+
+/* ---------- Pied de page ---------- */
+.pied { position: relative; z-index: 1; background: var(--nuit-2); padding-block: 44px calc(36px + env(safe-area-inset-bottom, 0px)); }
+.pied__in { display: grid; grid-template-columns: auto 1fr auto; gap: 28px; align-items: center; }
+.pied .logo__mot { font-size: 1.9rem; }
+.pied__nav { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.pied__nav .nav { flex-wrap: wrap; justify-content: center; }
+.pied__nav .nav a { font-size: .72rem; opacity: .7; }
+.pied__mention { text-align: right; font-size: .84rem; color: var(--craie-doux); margin: 0; }
+.pied__mention strong { color: var(--craie); font-weight: 500; display: block; }
+@media (max-width: 760px) {
+  .pied__in { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+  .pied__mention { text-align: center; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<header class="entete">
+  <div class="wrap entete__in">
+    <a class="logo" href="#accueil" aria-label="Faut Rigoler, la série : retour à l'accueil">
+      <span class="logo__mot" aria-hidden="true">Faut<br>Rigoler</span>
+      <span class="logo__serie" aria-hidden="true">La série</span>
+    </a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="#accueil" aria-current="true">Accueil</a>
+      <a href="#histoire">L'histoire</a>
+      <a href="#troupe">La troupe</a>
+      <a href="#teaser">Le teaser</a>
+      <a href="#alerte">Être alerté</a>
+    </nav>
+    <!-- Réseaux : remplacer les href="#" par les vraies adresses des comptes avant la mise en ligne -->
+    <div class="reseaux" aria-label="Réseaux sociaux">
+      <a href="#">Instagram</a>
+      <a href="#">YouTube</a>
+      <a href="#">TikTok</a>
+    </div>
+    <button class="burger" type="button" id="ouvrir-menu" aria-expanded="false" aria-controls="menu-mobile"><span></span><span class="visually-hidden">Ouvrir le menu</span></button>
+  </div>
+</header>
+
+<div class="menu-mobile" id="menu-mobile" hidden>
+  <div class="menu-mobile__haut">
+    <span class="logo"><span class="logo__mot" aria-hidden="true">Faut<br>Rigoler</span><span class="logo__serie" aria-hidden="true">La série</span></span>
+    <button class="fermer" type="button" id="fermer-menu" aria-label="Fermer le menu">×</button>
+  </div>
+  <nav aria-label="Navigation mobile">
+    <a href="#accueil">Accueil</a>
+    <a href="#histoire">L'histoire</a>
+    <a href="#troupe">La troupe</a>
+    <a href="#teaser">Le teaser</a>
+    <a href="#alerte">Être alerté</a>
+  </nav>
+  <div class="reseaux">
+    <a href="#">Instagram</a>
+    <a href="#">YouTube</a>
+    <a href="#">TikTok</a>
+  </div>
+</div>
+
+<main id="contenu">
+
+  <!-- ACCUEIL -->
+  <section class="accueil" id="accueil" aria-labelledby="titre-accueil">
+    <picture>
+      <source media="(max-width: 760px)" srcset="images/01_accueil_mobile.webp" width="1122" height="1402">
+      <img class="accueil__photo" src="images/01_accueil_groupe_dos.webp" width="1672" height="941"
+         alt="Une bande assise de dos sur un muret, face au Vieux-Port et à Notre-Dame-de-la-Garde au coucher du soleil" fetchpriority="high">
+    </picture>
+    <div class="wrap accueil__in">
+      <p class="surtitre entree">Une série originale marseillaise</p>
+      <h1 class="titre-serie entree entree--2" id="titre-accueil">
+        <span class="titre-serie__mot">Faut</span>
+        <span class="titre-serie__mot">Rigoler</span>
+        <svg class="trait" viewBox="0 0 330 22" aria-hidden="true" preserveAspectRatio="none">
+          <path d="M4 15 C 70 6, 160 4, 326 7 L 324 13 C 200 12, 90 15, 8 21 Z" fill="currentColor"/>
+        </svg>
+        <span class="titre-serie__la">La série</span>
+      </h1>
+      <p class="accroche entree entree--3">Un producteur fauché. Une troupe ingérable. Un rêve démesuré.</p>
+      <a class="btn entree entree--4" href="#alerte">M'alerter des premières images</a>
+      <a class="defiler" href="#histoire" aria-label="Défiler vers L'histoire"></a>
+    </div>
+  </section>
+
+  <!-- 01 L'HISTOIRE -->
+  <section class="histoire" id="histoire" aria-labelledby="titre-histoire">
+    <div class="wrap histoire__in">
+      <figure class="histoire__photo">
+        <img src="images/02_histoire_rue_du_panier.webp" width="1448" height="1086" loading="lazy"
+             alt="Rue du Panier fleurie de bougainvilliers, avec une affiche Faut Rigoler, qui descend vers le Vieux-Port et Notre-Dame-de-la-Garde">
+      </figure>
+      <div class="histoire__texte">
+        <p class="numero">01</p>
+        <h2 class="titre" id="titre-histoire">L'histoire</h2>
+        <p>À Marseille, un producteur sans moyens décide de réunir une troupe d'humoristes pour conquérir les scènes françaises.</p>
+        <p>Mais entre les egos, les galères et les imprévus, rien ne se passe comme prévu.</p>
+        <p class="citation" aria-hidden="true">Et franchement… faut rigoler.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 LA TROUPE -->
+  <section class="troupe" id="troupe" aria-labelledby="titre-troupe">
+    <div class="wrap">
+      <p class="numero">02</p>
+      <h2 class="titre" id="titre-troupe">La troupe</h2>
+      <p class="troupe__devise">Ils ne sont pas toujours d'accord. Mais ils ont le même rêve.</p>
+    </div>
+    <div class="troupe__photo">
+      <img src="images/09_decor_nuit_marseille.webp" width="1536" height="338" loading="lazy"
+           alt="Cinq membres de la troupe, de dos, regardent Marseille au coucher du soleil">
+      <p class="troupe__note">Les visages ? Plus tard.</p>
+    </div>
+  </section>
+
+  <!-- 03 LE TEASER (aucune vidéo pour l'instant : pas de bouton lecture) -->
+  <section class="teaser" id="teaser" aria-labelledby="titre-teaser">
+    <img class="teaser__photo" src="images/04_teaser_coulisses_tournage.webp" width="1672" height="941" loading="lazy"
+         alt="">
+    <div class="wrap teaser__in">
+      <div>
+        <p class="numero">03</p>
+        <h2 class="titre" id="titre-teaser">Le teaser</h2>
+      </div>
+      <div class="bientot">
+        <span class="bientot__pastille" aria-hidden="true">Bientôt</span>
+        <p>Les premières images arrivent bientôt.</p>
+        <a class="lien-souligne" href="#alerte">Être prévenu le premier</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 ÊTRE ALERTÉ -->
+  <section class="alerte" id="alerte" aria-labelledby="titre-alerte">
+    <div class="wrap alerte__in">
+      <div class="alerte__texte">
+        <p class="numero">04</p>
+        <h2 class="titre" id="titre-alerte">Être alerté</h2>
+        <p>Recevez les premières images, les annonces du casting et toutes les actualités de la série.</p>
+
+        <!-- Les inscriptions sont enregistrées dans Supabase (projet faut-rigoler, table inscriptions). -->
+        <form class="formulaire" id="form-alerte" novalidate>
+          <label class="visually-hidden" for="email">Votre adresse e-mail</label>
+          <div class="champ">
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="Votre adresse e-mail" required>
+            <button class="btn" type="submit">Je m'inscris</button>
+          </div>
+          <label class="consentement" for="consent">
+            <input id="consent" name="consent" type="checkbox" required>
+            <span>J'accepte de recevoir les actualités de Faut Rigoler. Vous pouvez vous désinscrire à tout moment.</span>
+          </label>
+          <p class="etat" id="etat" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+
+    </div>
+    <figure class="alerte__photo">
+      <img src="images/05_alerte_bonne_mere_vue.webp" width="1448" height="790" loading="lazy"
+           alt="La Vierge dorée de Notre-Dame-de-la-Garde au-dessus des toits de Marseille">
+    </figure>
+  </section>
+</main>
+
+<footer class="pied">
+  <div class="wrap pied__in">
+    <a class="logo" href="#accueil" aria-label="Faut Rigoler, la série : retour à l'accueil">
+      <span class="logo__mot" aria-hidden="true">Faut<br>Rigoler</span>
+      <span class="logo__serie" aria-hidden="true">La série</span>
+    </a>
+    <div class="pied__nav">
+      <nav class="nav" aria-label="Plan du site">
+        <a href="#accueil">Accueil</a>
+        <a href="#histoire">L'histoire</a>
+        <a href="#troupe">La troupe</a>
+        <a href="#teaser">Le teaser</a>
+        <a href="#alerte">Être alerté</a>
+      </nav>
+      <div class="reseaux">
+        <a href="#">Instagram</a>
+        <a href="#">YouTube</a>
+        <a href="#">TikTok</a>
+      </div>
+    </div>
+    <p class="pied__mention"><strong>Une série originale marseillaise.</strong>Prochainement.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  /* ---- Menu mobile ---- */
+  var menu = document.getElementById('menu-mobile');
+  var ouvrir = document.getElementById('ouvrir-menu');
+  var fermer = document.getElementById('fermer-menu');
+  function basculer(ouvert) {
+    menu.hidden = !ouvert;
+    ouvrir.setAttribute('aria-expanded', String(ouvert));
+    document.body.style.overflow = ouvert ? 'hidden' : '';
+    (ouvert ? fermer : ouvrir).focus();
+  }
+  ouvrir.addEventListener('click', function () { basculer(true); });
+  fermer.addEventListener('click', function () { basculer(false); });
+  menu.addEventListener('click', function (e) { if (e.target.closest('nav a')) basculer(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !menu.hidden) basculer(false); });
+
+  /* ---- Lien actif dans la navigation ---- */
+  var liens = document.querySelectorAll('.entete .nav a');
+  if ('IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function (entrees) {
+      entrees.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        liens.forEach(function (a) {
+          if (a.getAttribute('href') === '#' + en.target.id) a.setAttribute('aria-current', 'true');
+          else a.removeAttribute('aria-current');
+        });
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    document.querySelectorAll('main section[id]').forEach(function (s) { obs.observe(s); });
+  }
+
+  /* ---- Formulaire « Être alerté » : enregistre l'e-mail dans Supabase (projet faut-rigoler, table inscriptions) ---- */
+  var SUPABASE_URL = 'https://rrldywbauvjqkjjpcsye.supabase.co';
+  var SUPABASE_CLE_PUBLIQUE = 'sb_publishable_MeiFLGDBqJsiN3vT_TAPyw_hYO1N6KQ'; // clé publique : elle permet seulement de s'inscrire, pas de lire la liste
+  var form = document.getElementById('form-alerte');
+  var etat = document.getElementById('etat');
+  function message(txt, type) { etat.textContent = txt; etat.className = 'etat' + (type ? ' etat--' + type : ''); }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = form.email.value.trim().toLowerCase();
+    if (!email || !form.email.checkValidity()) { message('Entrez une adresse e-mail valide, par exemple prenom@exemple.fr.', 'erreur'); form.email.focus(); return; }
+    if (!form.consent.checked) { message('Cochez la case pour accepter de recevoir nos actualités.', 'erreur'); form.consent.focus(); return; }
+
+    var bouton = form.querySelector('button[type="submit"]');
+    bouton.disabled = true;
+    message('Inscription en cours…');
+    fetch(SUPABASE_URL + '/rest/v1/inscriptions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_CLE_PUBLIQUE,
+        'Authorization': 'Bearer ' + SUPABASE_CLE_PUBLIQUE,
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({ email: email, consentement: true })
+    }).then(function (r) {
+      if (r.status === 409) { form.reset(); message('Cette adresse est déjà inscrite. À très vite !', 'ok'); return; }
+      if (!r.ok) throw new Error(r.status);
+      form.reset();
+      message('Merci ! Vous serez prévenu dès que les premières images arrivent.', 'ok');
+    }).catch(function () {
+      message("L'inscription n'a pas pu être enregistrée. Vérifiez votre connexion et réessayez.", 'erreur');
+    }).finally(function () { bouton.disabled = false; });
+  });
+})();
+</script>
+</body>
+</html>
