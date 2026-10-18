@@ -256,7 +256,7 @@ section[id] { scroll-margin-top: 20px; }
 .teaser__in { display: flex; flex-direction: column; justify-content: space-between; gap: 40px; }
 .bientot { align-self: flex-start; text-align: left; display: flex; flex-direction: column; align-items: flex-start; gap: 16px; max-width: 30ch; }
 .bientot p { text-shadow: 0 2px 12px rgba(0,0,0,.5); }
-@media (max-width: 760px) { .teaser { min-height: 560px; } .teaser::before { background: linear-gradient(180deg, rgba(14,24,40,.8) 0%, rgba(14,24,40,.2) 35%, rgba(14,24,40,0) 55%, rgba(14,24,40,.85) 100%); } .teaser__photo { object-position: 58% 50%; } .bientot__pastille { display: none; } }
+@media (max-width: 760px) { .teaser { min-height: clamp(580px, 150vw, 800px); } .teaser::before { background: linear-gradient(180deg, rgba(14,24,40,.8) 0%, rgba(14,24,40,.2) 35%, rgba(14,24,40,0) 55%, rgba(14,24,40,.85) 100%); } .teaser__photo { object-position: 50% 45%; } .teaser .bientot__pastille { display: none; } }
 .bientot__pastille {
   width: 88px; height: 88px; border-radius: 50%; border: 2px dashed rgba(247,242,234,.65);
   display: grid; place-items: center; font-family: var(--f-titre); font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; padding-left: .2em;
@@ -420,8 +420,11 @@ section[id] { scroll-margin-top: 20px; }
 
   <!-- 03 LE TEASER (aucune vidéo pour l'instant : pas de bouton lecture) -->
   <section class="teaser" id="teaser" aria-labelledby="titre-teaser">
-    <img class="teaser__photo" src="images/04_teaser_tournage_vieux_port.webp" width="1672" height="941" loading="lazy"
+    <picture>
+      <source media="(max-width: 760px)" srcset="images/04_teaser_tournage_vieux_port_mobile.webp" width="1070" height="1470">
+      <img class="teaser__photo" src="images/04_teaser_tournage_vieux_port.webp" width="1672" height="941" loading="lazy"
          alt="Tournage de Faut Rigoler sur le Vieux-Port : une chèvre sur une trottinette, un homme tombé à l'eau et deux policiers, sous l'œil des caméras">
+    </picture>
     <div class="wrap teaser__in">
       <div>
         <p class="numero">03</p>
