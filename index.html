@@ -3,9 +3,56 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Faut Rigoler</title>
+<title>Faut Rigoler | Série comique à Marseille sur une troupe d'humoristes</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Faut Rigoler, une série originale marseillaise. Un producteur fauché. Une troupe ingérable. Un rêve démesuré.">
+<meta name="description" content="Faut Rigoler, la nouvelle série humoristique marseillaise : à Marseille, un producteur fauché réunit une troupe d'humoristes pour conquérir les scènes. Soyez alerté des premières images.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://fautrigoler-laserie.fr/">
+<meta name="theme-color" content="#0e1828">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Faut Rigoler">
+<meta property="og:title" content="Faut Rigoler, la série comique marseillaise">
+<meta property="og:description" content="Un producteur fauché. Une troupe d'humoristes ingérable. Un rêve démesuré. Une série tournée à Marseille.">
+<meta property="og:url" content="https://fautrigoler-laserie.fr/">
+<meta property="og:image" content="https://fautrigoler-laserie.fr/images/partage_faut_rigoler.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="La troupe de Faut Rigoler, de dos, face au Vieux-Port de Marseille au coucher du soleil">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Faut Rigoler, la série comique marseillaise">
+<meta name="twitter:description" content="Un producteur fauché. Une troupe d'humoristes ingérable. Un rêve démesuré. Une série tournée à Marseille.">
+<meta name="twitter:image" content="https://fautrigoler-laserie.fr/images/partage_faut_rigoler.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://fautrigoler-laserie.fr/#site",
+      "url": "https://fautrigoler-laserie.fr/",
+      "name": "Faut Rigoler",
+      "alternateName": ["Faut Rigoler la série", "Faut Rigoler série Marseille"],
+      "inLanguage": "fr-FR"
+    },
+    {
+      "@type": "TVSeries",
+      "@id": "https://fautrigoler-laserie.fr/#serie",
+      "name": "Faut Rigoler",
+      "alternateName": "Faut Rigoler, la série",
+      "url": "https://fautrigoler-laserie.fr/",
+      "description": "Série comique marseillaise : à Marseille, un producteur sans moyens réunit une troupe d'humoristes pour conquérir les scènes françaises. Entre les egos, les galères et les imprévus, rien ne se passe comme prévu.",
+      "genre": ["Comédie", "Humour"],
+      "inLanguage": "fr",
+      "countryOfOrigin": { "@type": "Country", "name": "France" },
+      "contentLocation": { "@type": "Place", "name": "Marseille", "address": { "@type": "PostalAddress", "addressLocality": "Marseille", "addressRegion": "Provence-Alpes-Côte d'Azur", "addressCountry": "FR" } },
+      "image": "https://fautrigoler-laserie.fr/images/partage_faut_rigoler.jpg",
+      "keywords": "série Marseille, série marseillaise, série comique, humoristes Marseille, troupe d'humoristes, comédie, Faut Rigoler"
+    }
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Oswald:wght@500;600&family=Permanent+Marker&family=Work+Sans:wght@400;500;600&display=swap">
@@ -179,6 +226,7 @@ section[id] { scroll-margin-top: 20px; }
 .troupe .numero { justify-content: center; }
 .troupe .numero::after { display: none; }
 .troupe__devise { font-family: var(--f-main); font-weight: 500; font-size: clamp(1.7rem, 3.6vw, 2.6rem); line-height: 1.1; margin: 12px auto 0; max-width: 24ch; color: var(--craie); transform: rotate(-1.5deg); }
+.troupe__texte { margin: 14px auto 0; max-width: 46ch; color: var(--craie-doux); font-size: 1.02rem; }
 .troupe__photo { position: relative; margin-top: 8px; }
 .troupe__photo img { width: 100%; height: clamp(240px, 32vw, 460px); object-fit: cover; object-position: 50% 62%; }
 .troupe__photo::before { content: ""; position: absolute; inset: 0 0 auto; height: 35%; background: linear-gradient(180deg, var(--nuit), rgba(14,24,40,0)); z-index: 1; }
@@ -305,7 +353,7 @@ section[id] { scroll-margin-top: 20px; }
          alt="Une bande assise de dos sur un muret, face au Vieux-Port et à Notre-Dame-de-la-Garde au coucher du soleil" fetchpriority="high">
     </picture>
     <div class="wrap accueil__in">
-      <p class="surtitre entree">Une série originale marseillaise</p>
+      <p class="surtitre entree">Une série comique marseillaise</p>
       <h1 class="titre-serie entree entree--2" id="titre-accueil">
         <span class="titre-serie__mot">Faut</span>
         <span class="titre-serie__mot">Rigoler</span>
@@ -330,7 +378,7 @@ section[id] { scroll-margin-top: 20px; }
       <div class="histoire__texte">
         <p class="numero">01</p>
         <h2 class="titre" id="titre-histoire">L'histoire</h2>
-        <p>À Marseille, un producteur sans moyens décide de réunir une troupe d'humoristes pour conquérir les scènes françaises.</p>
+        <p>À Marseille, un producteur sans moyens décide de réunir une troupe d'humoristes marseillais pour conquérir les scènes françaises.</p>
         <p>Mais entre les egos, les galères et les imprévus, rien ne se passe comme prévu.</p>
         <p class="citation" aria-hidden="true">Et franchement… faut rigoler.</p>
       </div>
@@ -343,17 +391,18 @@ section[id] { scroll-margin-top: 20px; }
       <p class="numero">02</p>
       <h2 class="titre" id="titre-troupe">La troupe</h2>
       <p class="troupe__devise">Ils ne sont pas toujours d'accord. Mais ils ont le même rêve.</p>
+      <p class="troupe__texte">Une bande d'humoristes de Marseille, du Panier au Vieux-Port, prête à tout pour monter sur scène.</p>
     </div>
     <div class="troupe__photo">
       <img src="images/09_decor_nuit_marseille.webp" width="1536" height="338" loading="lazy"
-           alt="Cinq membres de la troupe, de dos, regardent Marseille au coucher du soleil">
+           alt="La troupe d'humoristes de la série Faut Rigoler, de dos, face à Marseille au coucher du soleil">
     </div>
   </section>
 
   <!-- 03 LE TEASER (aucune vidéo pour l'instant : pas de bouton lecture) -->
   <section class="teaser" id="teaser" aria-labelledby="titre-teaser">
     <img class="teaser__photo" src="images/04_teaser_coulisses_tournage.webp" width="1672" height="941" loading="lazy"
-         alt="">
+         alt="Plateau de tournage face au Vieux-Port de Marseille au coucher du soleil">
     <div class="wrap teaser__in">
       <div>
         <p class="numero">03</p>
@@ -417,7 +466,7 @@ section[id] { scroll-margin-top: 20px; }
         <a href="#">TikTok</a>
       </div>
     </div>
-    <p class="pied__mention"><strong>Une série originale marseillaise.</strong>Prochainement.</p>
+    <p class="pied__mention"><strong>Faut Rigoler, une série comique marseillaise.</strong>Prochainement.</p>
   </div>
 </footer>
 

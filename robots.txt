@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://fautrigoler-laserie.fr/sitemap.xml
