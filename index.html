@@ -82,7 +82,6 @@
   --nuit: #0e1828;        /* bleu nuit : fonds sombres */
   --nuit-2: #15233a;      /* bleu nuit relevé : pied de page, champs */
   --ivoire: #f6efe3;      /* ivoire : sections claires */
-  --sable: #ece1cd;       /* sable : bande FAQ */
   --encre: #1b2232;       /* texte sur ivoire */
   --encre-doux: #4a5163;  /* texte secondaire sur ivoire */
   --craie: #f7f2ea;       /* texte sur nuit */
@@ -302,22 +301,6 @@ section[id] { scroll-margin-top: 20px; }
   .champ .btn { justify-content: center; }
 }
 
-/* ---------- 05 Autour de la série (FAQ) : bande sable, entre l'ivoire et le pied de page ---------- */
-.apropos { background: var(--sable); color: var(--encre); }
-.apropos__in { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(28px, 5vw, 72px); padding-block: clamp(56px, 7vw, 96px); }
-.apropos__intro { color: var(--encre-doux); max-width: 38ch; margin: 14px 0 0; font-size: 1.04rem; }
-.apropos__questions { min-width: 0; }
-.apropos__questions details { border-bottom: 1px solid rgba(27,34,50,.16); }
-.apropos__questions details:first-child { border-top: 1px solid rgba(27,34,50,.16); }
-.apropos__questions summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-block: 20px; font-family: var(--f-titre); font-weight: 500; font-size: 1.15rem; letter-spacing: .02em; }
-.apropos__questions summary::-webkit-details-marker { display: none; }
-.apropos__questions summary::after { content: "+"; flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: var(--rose); color: #fff; font-family: var(--f-texte); font-size: 1.2rem; line-height: 1; transition: transform .2s; }
-.apropos__questions details[open] summary::after { transform: rotate(45deg); }
-.apropos__questions summary:hover { color: var(--rose-fonce); }
-.apropos__questions p { color: var(--encre-doux); margin: 0 0 22px; max-width: 60ch; }
-.apropos__questions a { color: var(--rose-fonce); text-underline-offset: 3px; }
-@media (max-width: 760px) { .apropos__in { grid-template-columns: 1fr; gap: 24px; } }
-
 /* ---------- Pied de page ---------- */
 .pied { position: relative; z-index: 1; background: var(--nuit-2); padding-block: 44px calc(36px + env(safe-area-inset-bottom, 0px)); }
 .pied__in { display: grid; grid-template-columns: auto 1fr auto; gap: 28px; align-items: center; }
@@ -478,31 +461,6 @@ section[id] { scroll-margin-top: 20px; }
       </figure>
     </div>
   </section>
-
-  <!-- 05 AUTOUR DE LA SÉRIE -->
-  <section class="apropos" id="a-propos" aria-labelledby="titre-apropos">
-    <div class="wrap apropos__in">
-      <div>
-        <p class="numero">05</p>
-        <h2 class="titre" id="titre-apropos">Autour de la série</h2>
-        <p class="apropos__intro">Une comédie marseillaise, une troupe d'humoristes et une ambition commune : conquérir les scènes françaises.</p>
-      </div>
-      <div class="apropos__questions">
-        <details open>
-          <summary>Qui produit la série Faut Rigoler ?</summary>
-          <p>Faut Rigoler est produite par Les Enfants du Sud. La série suit l'aventure d'un producteur et d'une troupe d'humoristes marseillais, entre création, ambitions et galères.</p>
-        </details>
-        <details>
-          <summary>Qui sont les humoristes de la série ?</summary>
-          <p>La distribution sera dévoilée dans les prochaines annonces. Pour découvrir les artistes au fur et à mesure, <a href="#alerte">inscrivez-vous aux actualités de Faut Rigoler</a>.</p>
-        </details>
-        <details>
-          <summary>Comment découvrir les premières images ?</summary>
-          <p>Le teaser arrive bientôt. En vous inscrivant aux actualités, vous recevrez les premières images et les annonces de la série. Suivez aussi la série sur <a href="https://www.instagram.com/faut_rigoler_la_serie/" target="_blank" rel="noopener">Instagram</a> et <a href="https://www.tiktok.com/@user3381965132956" target="_blank" rel="noopener">TikTok</a>.</p>
-        </details>
-      </div>
-    </div>
-  </section>
 </main>
 
 <footer class="pied">
@@ -518,7 +476,6 @@ section[id] { scroll-margin-top: 20px; }
         <a href="#troupe">La troupe</a>
         <a href="#teaser">Le teaser</a>
         <a href="#alerte">Être alerté</a>
-        <a href="#a-propos">Autour de la série</a>
       </nav>
       <div class="reseaux">
         <a href="https://www.instagram.com/faut_rigoler_la_serie/" target="_blank" rel="noopener">Instagram</a>
