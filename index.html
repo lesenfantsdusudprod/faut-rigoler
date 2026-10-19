@@ -258,7 +258,16 @@ section[id] { scroll-margin-top: 20px; }
 .teaser__in { display: flex; flex-direction: column; justify-content: space-between; gap: 40px; }
 .bientot { align-self: flex-start; text-align: left; display: flex; flex-direction: column; align-items: flex-start; gap: 16px; max-width: 30ch; }
 .bientot p { text-shadow: 0 2px 12px rgba(0,0,0,.5); }
-@media (max-width: 760px) { .teaser { min-height: clamp(580px, 150vw, 800px); } .teaser::before { background: linear-gradient(180deg, rgba(14,24,40,.8) 0%, rgba(14,24,40,.2) 35%, rgba(14,24,40,0) 55%, rgba(14,24,40,.85) 100%); } .teaser__photo { object-position: 50% 45%; } .teaser .bientot__pastille { display: none; } .teaser__video { display: none; } }
+/* Mobile : la vidéo (carrée) occupe le haut de la section, le texte passe dessous sur fond bleu nuit */
+@media (max-width: 760px) {
+  .teaser { min-height: 0; background: var(--nuit); }
+  .teaser__photo, .teaser__video { inset: 0 0 auto 0; height: 100vw; object-position: 50% 50%; }
+  .teaser__photo { object-position: 50% 62%; }
+  .teaser::before { background: linear-gradient(180deg, rgba(14,24,40,.75) 0, rgba(14,24,40,0) 130px, rgba(14,24,40,0) calc(100vw - 90px), var(--nuit) 100vw); }
+  .teaser__in { gap: 0; }
+  .bientot { margin-top: calc(100vw - 150px); }
+  .teaser .bientot__pastille { display: none; }
+}
 .bientot__pastille {
   width: 88px; height: 88px; border-radius: 50%; border: 2px dashed rgba(247,242,234,.65);
   display: grid; place-items: center; font-family: var(--f-titre); font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; padding-left: .2em;
@@ -427,7 +436,7 @@ section[id] { scroll-margin-top: 20px; }
       <img class="teaser__photo" src="images/04_teaser_tournage_vieux_port.webp" width="1672" height="941" loading="lazy"
          alt="Tournage de Faut Rigoler sur le Vieux-Port : une chèvre sur une trottinette, un homme tombé à l'eau et deux policiers, sous l'œil des caméras">
     </picture>
-    <video class="teaser__video" muted loop playsinline preload="none" aria-hidden="true" data-mp4="images/04_teaser_tournage_vieux_port.mp4" data-webm="images/04_teaser_tournage_vieux_port.webm"></video>
+    <video class="teaser__video" muted loop playsinline preload="none" aria-hidden="true" data-mp4="images/04_teaser_tournage_vieux_port.mp4" data-webm="images/04_teaser_tournage_vieux_port.webm" data-mp4-mobile="images/04_teaser_tournage_vieux_port_mobile.mp4" data-webm-mobile="images/04_teaser_tournage_vieux_port_mobile.webm"></video>
     <div class="wrap teaser__in">
       <div>
         <p class="numero">03</p>
@@ -527,17 +536,18 @@ section[id] { scroll-margin-top: 20px; }
     document.querySelectorAll('main section[id]').forEach(function (s) { obs.observe(s); });
   }
 
-  /* ---- Vidéo du teaser : seulement sur grand écran, chargée quand la section approche ---- */
+  /* ---- Vidéo du teaser : version large sur ordinateur, carrée sur mobile, chargée quand la section approche ---- */
   var video = document.querySelector('.teaser__video');
   var grandEcran = window.matchMedia('(min-width: 761px)');
   var calme = window.matchMedia('(prefers-reduced-motion: reduce)');
   if (video && 'IntersectionObserver' in window) {
     var vObs = new IntersectionObserver(function (entrees) {
       entrees.forEach(function (en) {
-        if (!grandEcran.matches || calme.matches) return;
+        if (calme.matches) return;
         if (en.isIntersecting) {
           if (!video.src) {
-            video.src = video.canPlayType('video/mp4; codecs="avc1.640028"') ? video.dataset.mp4 : video.dataset.webm;
+            var mp4 = video.canPlayType('video/mp4; codecs="avc1.640028"');
+            video.src = grandEcran.matches ? (mp4 ? video.dataset.mp4 : video.dataset.webm) : (mp4 ? video.dataset.mp4Mobile : video.dataset.webmMobile);
             video.addEventListener('playing', function () { video.classList.add('is-ready'); }, { once: true });
           }
           var lecture = video.play(); if (lecture && lecture.catch) lecture.catch(function () {});
